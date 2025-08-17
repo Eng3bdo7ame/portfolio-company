@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${arabic.variable}`}>
+    <html lang="en" className={`${montserrat.variable}`}>
       <body>
         <Navbar />
         {children}
