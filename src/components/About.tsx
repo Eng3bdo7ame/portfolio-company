@@ -1,6 +1,9 @@
 import React from "react";
 import Button from "./Button";
 import Image from "next/image";
+import { AboutSection } from "../types/index";
+
+interface AboutProps extends AboutSection {}
 
 export default function About({
   image,
@@ -10,7 +13,7 @@ export default function About({
   counter,
   background,
   reverse = false,
-}) {
+}: AboutProps) {
   const experience = [
     {
       Number: "10+",
@@ -133,7 +136,7 @@ export default function About({
             reverse ? "xl:[direction:rtl] " : ""
           }`}>
           {" "}
-          <div className="w-full justify-center ">
+          <div className="w-full justify-center hidden xl:block ">
             <Image
               width={500}
               height={504}
@@ -141,6 +144,33 @@ export default function About({
               src={image}
               alt="about Us image"
             />
+          </div>
+          <div className="relative xl:hidden flex-col space-y-10 justify-center">
+            <Image
+              width={382}
+              height={250}
+              className=" w-full h-[250px] md:h-[500px] rounded-xl object-cover"
+              src="/images/HomePage/About1.png"
+              alt="about Us image"
+            />
+
+            <Image
+              width={382}
+              height={250}
+              className="w-full h-[250px] md:h-[500px] rounded-xl object-cover"
+              src="/images/HomePage/About2.png"
+              alt="about Us image"
+            />
+
+            <div className="absolute top-0 right-0 w-[130px] h-[130px] md:w-[150px] md:h-[150px]">
+              <Image
+                width={130}
+                height={130}
+                className="w-[130px] h-[130px] md:w-[150px] md:h-[150px]   rounded-xl object-cover"
+                src="/images/HomePage/About3.png"
+                alt="about Us image"
+              />
+            </div>
           </div>
           <div
             className={`w-full mt-10 flex-col justify-start lg:items-start ${

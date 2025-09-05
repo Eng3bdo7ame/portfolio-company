@@ -65,7 +65,7 @@ export default function Navbar() {
                 height={24}
                 src="/images/mainImage/NavMenu.svg"
                 alt="Menu"
-                className="h-6"
+                className="h-6 w-6 cursor-pointer lg:hidden"
               />
             </div>
 

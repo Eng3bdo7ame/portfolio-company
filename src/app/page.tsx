@@ -3,8 +3,11 @@ import About from "../components/About";
 import Card from "../components/Card";
 import Button from "@/components/Button";
 import OurPartners from "../components/OurPartners";
+import { getHomeData } from "@/lib/api";
 
-export default function Home() {
+export default async function Home() {
+  const { services, partners, clients } = await getHomeData();
+
   return (
     <main className="">
       <HeroSection />
@@ -17,27 +20,38 @@ export default function Home() {
           button="Learn More About Us"
         />
 
-        <div className="bg-gray-200 mt-20  rounded-xl">
+        <div className="bg-[#F6F6F6] mt-20  rounded-xl">
           <h1 className="text-primary-2 text-center  font-semibold py-8 ">
             Comprehensive security and surveillance solutions
           </h1>
           <div className="lg:px-10 px-4 grid grid-cols-1  lg:grid-cols-2 gap-10">
-            <Card
-              imge="/images/HomePage/cardImage.svg"
-              icon="/images/HomePage/icon.svg"
-              title="Electronic Low Voltage (ELV)"
-              description="We provide professional CCTV installation services offering high-quality cameras."
-              Discover="Discover More"
-            />
+            {services.map((service) => (
+              <Card
+                key={service.id}
+                image={service.image}
+                icon={service.icon}
+                title={service.title}
+                summary={service.summary}
+                discover="Discover More"
+              />
+            ))}
           </div>
           <div className="flex py-10 justify-center">
             <Button btnContent="Explore All Services" />
           </div>
         </div>
-        <OurPartners
-          title="Our Partners"
-          description="Our partners are leaders in the security and automation industries, providing us with the tools and technologies to deliver the best solutions to our clients."
-        />
+
+        <div className="my-15 text-center">
+          <h1 className="text-4xl text-primary-2 text-center font-bold">
+            Our Partners
+          </h1>
+          <p className=" text-primary-2 w-[55%] mx-auto">
+            Our systems are built using the world’s most trusted security and
+            automation partners & Technology You Can Trust On.
+          </p>
+
+          <OurPartners items={partners} />
+        </div>
 
         <div>
           <About
@@ -49,10 +63,17 @@ export default function Home() {
           />
         </div>
 
-        <OurPartners
-          title="Our Partners"
-          description="Our partners are leaders in the security and automation industries, providing us with the tools and technologies to deliver the best solutions to our clients."
-        />
+        <div className="mb-10 text-center">
+          <h1 className="text-4xl text-primary-2 text-center font-bold">
+            Clients
+          </h1>
+          <p className=" text-primary-2 w-[55%] mx-auto ">
+            We’ve protected, connected, and transformed spaces of every kind,
+            Our success is measured by trust, And we’ve earned plenty of it
+          </p>
+
+          <OurPartners items={clients} />
+        </div>
       </div>
     </main>
   );

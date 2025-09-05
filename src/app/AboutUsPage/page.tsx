@@ -16,7 +16,7 @@ export default function page() {
             image="/images/AboutPage/About.png"
             title="Who We Are"
             description={
-              <>
+              <div className="space-y-4">
                 <div>
                   Founded in Abu Dhabi in 2017, Home Hunters is a pioneer in
                   smart home automation, CCTV security systems, and ELV (Extra
@@ -38,7 +38,7 @@ export default function page() {
                   technologies to make everyday living smarter and more
                   intuitive.
                 </div>
-              </>
+              </div>
             }
             button="Explore Our Solutions "
           />

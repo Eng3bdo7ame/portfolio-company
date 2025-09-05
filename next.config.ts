@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["pagedone.io"], // أضف أي دومينات خارجية تستخدمها هنا
+    domains: ["homehunter.kemitbrand.com"], // ✅ ضيف الدومين هنا
   },
 };
 

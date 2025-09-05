@@ -3,7 +3,7 @@ import Button from "./Button";
 
 export default function HeroSection() {
   return (
-    <div className="relative w-full  overflow-hidden ">
+    <div className="relative w-full  overflow-hidden  min-h-[calc(100vh-80px)]">
       <video
         autoPlay
         loop
@@ -13,8 +13,8 @@ export default function HeroSection() {
         <source src="/images/HomePage/HH Hero Section.mp4" type="video/mp4" />
       </video>
 
-      <div className="relative ">
-        <div className="lg:py-40 py-20">
+      <div className="relative min-h-[calc(100vh-80px)] flex flex-col justify-center items-center text-center ">
+        <div className="">
           <div className="text-center">
             <h1 className="uppercase lg:w-[429px] w-[250px] m-auto  text-white">
               Designed for the Way You Live.
