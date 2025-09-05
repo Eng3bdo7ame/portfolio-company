@@ -1,7 +1,14 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
+import React, { useState } from "react";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   const links = [
     {
       name: "Home",
@@ -9,12 +16,12 @@ export default function Navbar() {
     },
     {
       name: "About us",
-      href: "/about",
+      href: "/AboutUsPage",
     },
 
     {
       name: "Services",
-      href: "/services",
+      href: "/ServicesPage",
     },
 
     {
@@ -37,52 +44,67 @@ export default function Navbar() {
   ];
 
   return (
-    <nav
-      className="w-full py-[24px] bg-primary-1 backdrop-blur-sm bg-opacity-70"
-      style={{ backdropFilter: "blur(10px)" }}>
-      <div className="container mx-auto ">
-        <div className="w-full flex  flex-col lg:flex-row">
-          <div className=" flex justify-between  lg:flex-row">
-            <a href="/home" className="flex items-center">
+    <nav className="w-full relative">
+      <div
+        className="w-full py-[24px] bg-primary-1 backdrop-blur-sm bg-opacity-70"
+        style={{ backdropFilter: "blur(10px)" }}>
+        <div className="container mx-auto ">
+          <div className="w-full flex  flex-col lg:flex-row">
+            <div className=" flex justify-between  lg:flex-row">
+              <Link href="/" className="flex items-center">
+                <Image
+                  width={158}
+                  height={39}
+                  src="/images/mainImage/Logo.png"
+                  alt="Logo"
+                />
+              </Link>
               <Image
-                width={158}
-                height={39}
-                src="/images/Logo.png"
-                alt="Logo"
-              />
-            </a>
-            <button
-              data-collapse-toggle="navbar-default-example"
-              type="button"
-              className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              aria-controls="navbar-default-example"
-              aria-expanded="false">
-              <span className="sr-only">Open main menu</span>
-              <Image
+                onClick={toggleMenu}
                 width={24}
                 height={24}
-                src="/images/menu-icon.svg"
+                src="/images/mainImage/NavMenu.svg"
                 alt="Menu"
                 className="h-6"
               />
-            </button>
-          </div>
+            </div>
 
-          <div className="hidden w-full lg:flex " id="navbar-default-example">
-            <ul className="flex items-center  flex-col mt-4 lg:mt-0 lg:ml-auto lg:flex-row 2xl:gap-12 lg:gap-8">
-              {links.map((link) => (
-                <li className="" key={link.name}>
-                  <a
-                    href={link.href}
-                    className="flex items-center  justify-between text-primary-2 text-sm lg:text-[18px] font-medium hover:text-indigo-700 transition-all duration-500 ">
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="hidden w-full lg:flex " id="navbar-default-example">
+              <ul className="flex items-center  flex-col mt-4 lg:mt-0 lg:ml-auto lg:flex-row 2xl:gap-12 lg:gap-8">
+                {links.map((link) => (
+                  <li className="" key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="flex items-center  justify-between text-primary-2 text-sm lg:text-[18px] font-medium hover:text-indigo-700 transition-all duration-500 ">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
+
+      {isOpen && (
+        <div
+          id="dropdownNavbar"
+          className="absolute mt-2 right-2 z-50  font-normal bg-primary-1 divide-y divide-gray-100 rounded-lg shadow-sm w-44  dark:divide-gray-600">
+          <ul
+            className="py-2 text-sm text-gray-700 dark:text-gray-400"
+            aria-labelledby="dropdownLargeButton">
+            {links.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  className="block px-4 py-2 text-primary-2 hover:bg-gray-500  ">
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </nav>
   );
 }
